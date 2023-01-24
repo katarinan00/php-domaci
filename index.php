@@ -26,7 +26,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 }
 ?>
 
-?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,6 +36,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Evidencija luka i brodova</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel = "shortcut icon" type = "image/x-icon" href = "logo.jpg"/>
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,8 +58,8 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             <input class="form-control" type="password" name="password" placeholder="Password" value="">
         </div>
         <div class="d-grid gap-2 d-md-block">
-            <button type="submit" id="login" class="btn btn-success">Prijavi se</button>
-            <button type="button" id="register" onclick="document.location.href='registracija.php'" class="btn btn-primary">Registruj se</button>
+            <button type="submit" id="login" class="btn btn-success" style="background-color: rgb(119,136,153);border:none">Prijavi se</button>
+            <button type="button" id="register" onclick="document.location.href='registracija.php'" class="btn btn-primary" style="background-color:rgb(47,79,79);border:none">Registruj se</button>
         </div>
 
     </form>

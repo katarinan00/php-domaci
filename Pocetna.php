@@ -21,6 +21,8 @@ require "model/luka.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Evidencija luka i brodova </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">    
+    <link rel = "shortcut icon" type = "image/x-icon" href = "logo.jpg"/>
 </head>
 
 <body>
@@ -49,7 +51,7 @@ require "model/luka.php";
             </li>
         </ul>
         <div>
-            <a class="btn btn-danger" href="odjava.php" >Odjavi se</a>
+            <a class="btn btn-danger"style="background-color:rgb(47,79,79);border:none " href="odjava.php">Odjavi se</a> 
         </div>
     </div>
 </div>
@@ -87,7 +89,7 @@ require "model/luka.php";
                             <p class="card-text">Grad: <?=$luka['grad']?></p>                     
                             <?php $korisnikK=Korisnik::getKorisnik($luka['korisnik_id'],$konekcija)[0]?>
                             <p class="card-text">Korisnik dodao: <?=$korisnikK['username']?></p>
-                            <button type="submit" class="btn btn-primary">Pogledaj</button>
+                            <button type="submit" class="btn btn-primary" style="background-color:rgb(169,169,169);border:none ">Pogledaj</button>
                         </div>
                     </div>
                 </form>
