@@ -1,5 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['current_user'])) {
+    header('Location: index.php');
+    exit();
+}
+
 require "dbBroker.php"; 
+require "model/Korisnik.php";
+require "model/brod.php";
+require "model/luka.php";
 ?>
 
 <!doctype html>
@@ -23,7 +33,7 @@ require "dbBroker.php";
     <div class="navigacija d-flex justify-content-between">
         <ul class="nav" id="navigacija-lista" >
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" >Početna</a>
+            <a class="nav-link" aria-current="page" href="pocetna.php">Početna</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Brodovi</a>
@@ -35,7 +45,7 @@ require "dbBroker.php";
                 <a class="nav-link" href="">Nalog</a>
             </li>
             <li class="nav-item">
-                <p class="">Prijavljen na sistem: ></p>
+                <p class="">Prijavljen na sistem: <?=$_SESSION['current_user']?></p> 
             </li>
         </ul>
         <div>
@@ -63,15 +73,28 @@ require "dbBroker.php";
 </div>
 
 <div class="row row-cols-1 row-cols-sm-2 g-3 justify-content-center">
-                <form method="post"  class="col">
+<?php
+        $luke=Luka::getAll($konekcija);
+        while (($luka=$luke->fetch_assoc())!=null){?>
+                <form method="post" action="luka.php"  class="col">
                     <div class="card" style="background-color: rgba(42,57,89,0.87); width: 35vw; margin-left: auto; margin-right: auto">
                         <div class="card-body">
-                           <!--Kasnije ce se ovde napraviti prikaz koji brodovi su u kojoj luci -->
+                        <input type="hidden" name="id_luke" value="<?=$luka['id']?>" >
+                            <h5 class="card-title"><?=$luka['nazivLuke']?></h5>
+                            <?php $brod=Brod::getBrod($luka['brod_id'],$konekcija)[0]?>
+                            <p class="card-text">Brod: <?=$brod['nazivBroda']." ".$brod['zemljaPorekla']?></p>                                     
+                            <p class="card-text">Naziv Luke: <?=$luka['nazivLuke']?></p>
+                            <p class="card-text">Grad: <?=$luka['grad']?></p>                     
+                            <?php $korisnikK=Korisnik::getKorisnik($luka['korisnik_id'],$konekcija)[0]?>
+                            <p class="card-text">Korisnik dodao: <?=$korisnikK['username']?></p>
                             <button type="submit" class="btn btn-primary">Pogledaj</button>
                         </div>
                     </div>
                 </form>
+        <?php }
+        ?>
 
+    </div>
     </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
